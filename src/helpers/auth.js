@@ -10,6 +10,10 @@ export const getToken = async ({ clientId, clientSecret }) => {
       method: 'post',
       body: formData
     })
+
+  if(result.status !== 200) {
+    console.error('Invalid client id or secret provided')
+  }
   const {access_token} = await result.json()
 
   return access_token
