@@ -4,7 +4,7 @@ import { DARK_STYLE_URL, LIGHT_STYLE_URL, LIGHT_RASTER_STYLE_URL } from './const
 import { getToken } from './helpers/auth'
 import { View } from 'react-native'
 
-Mapbox.setAccessToken('pk.1234')
+Mapbox.setAccessToken('pk.kdsevitantcaerspamradecsisiht')
 
 const styleMapper = {
   'style://streets-light': LIGHT_STYLE_URL,
