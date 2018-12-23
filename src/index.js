@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Mapbox from '@cedarstudios/react-native-cedarmaps'
+import Mapbox from '@cedarstudios/react-native-mapbox-gl'
 import { DARK_STYLE_URL, LIGHT_STYLE_URL } from './constants/styles'
 import { getToken } from './helpers/auth'
 import { View } from 'react-native'
