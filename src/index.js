@@ -33,10 +33,10 @@ export default class extends Component<{}> {
   }
 
   render() {
-    const { style } = this.props
+    const { mapStyle } = this.props
     const { token } = this.state
     if (!token) return <div/>
-    const cedarMapStyle = styleMapper[style] || LIGHT_STYLE_URL
+    const cedarMapStyle = styleMapper[mapStyle] || LIGHT_STYLE_URL
     const tileJsonUrl = `${cedarMapStyle}?access_token=${token}`
     return (
       <Mapbox.MapView
