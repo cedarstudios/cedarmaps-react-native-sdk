@@ -10,7 +10,7 @@ const styleMapper = {
   'style://streets-dark': DARK_STYLE_URL,
 }
 
-export default class extends Component<{}> {
+class CedarMaps extends Component<{}> {
 
   constructor(props) {
     super(props)
@@ -29,13 +29,15 @@ export default class extends Component<{}> {
         this.setState({
           token,
         })
-      })
+      }).catch(e =>{
+
+    })
   }
 
   render() {
     const { mapStyle } = this.props
     const { token } = this.state
-    if (!token) return <div/>
+    if (!token) return (null)
     const cedarMapStyle = styleMapper[mapStyle] || LIGHT_STYLE_URL
     const tileJsonUrl = `${cedarMapStyle}?access_token=${token}`
     return (
@@ -48,3 +50,4 @@ export default class extends Component<{}> {
   }
 }
 
+export default CedarMaps
