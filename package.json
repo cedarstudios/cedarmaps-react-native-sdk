@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@cedarstudios/react-native-cedarmaps": "git+https://github.com/cedarstudios/react-native-mapbox-gl.git",
-    "react": "^16.7.0"
+    "react": "^16.7.0",
+    "react-native": "^0.57.8"
   }
 }

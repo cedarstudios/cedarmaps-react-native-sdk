@@ -2,12 +2,18 @@ import React, { Component } from 'react'
 import Mapbox from '@cedarstudios/react-native-cedarmaps'
 import { DARK_STYLE_URL, LIGHT_STYLE_URL } from './constants/styles'
 import { getToken } from './helpers/auth'
+import { View } from 'react-native'
 
 Mapbox.setAccessToken('pk.1234')
 
 const styleMapper = {
   'style://streets-light': LIGHT_STYLE_URL,
   'style://streets-dark': DARK_STYLE_URL,
+}
+
+const backgroundColorMapper = {
+  LIGHT_STYLE_URL: '#f4f3f0',
+  DARK_STYLE_URL: '#213945',
 }
 
 class CedarMaps extends Component<{}> {
@@ -21,6 +27,8 @@ class CedarMaps extends Component<{}> {
 
   componentDidMount() {
     const { clientId, clientSecret } = this.props
+
+    if (!clientId || !clientSecret) throw Error('client_id or client_secret not provided')
     getToken({
       clientSecret,
       clientId,
@@ -29,16 +37,19 @@ class CedarMaps extends Component<{}> {
         this.setState({
           token,
         })
-      }).catch(e =>{
-
-    })
+      })
   }
 
   render() {
     const { mapStyle } = this.props
     const { token } = this.state
-    if (!token) return (null)
     const cedarMapStyle = styleMapper[mapStyle] || LIGHT_STYLE_URL
+    if (!token) {
+      return (<View style={{
+        ...this.props.style,
+        backgroundColor: backgroundColorMapper[cedarMapStyle],
+      }}/>)
+    }
     const tileJsonUrl = `${cedarMapStyle}?access_token=${token}`
     return (
       <Mapbox.MapView
