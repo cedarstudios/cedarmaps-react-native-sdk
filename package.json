@@ -1,0 +1,36 @@
+{
+  "name": "cedarmaps-react-native-sdk",
+  "version": "0.0.1",
+  "description": "A mapping service and highly detailed and spatially accurate GIS vector data application that covers the whole country of Iran.",
+  "main": "./src/index.js",
+  "scripts": {
+    "lint": "eslint src test"
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "map",
+    "react",
+    "npm",
+    "module",
+    "node",
+    "javascript"
+  ],
+  "author": "Cedar Studios <info@cedarmaps.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^5.1.3",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "istanbul": "^1.0.0-alpha"
+  },
+  "dependencies": {
+    "@cedarstudios/react-native-cedarmaps": "git+https://github.com/cedarstudios/react-native-mapbox-gl.git",
+    "axios": "^0.18.0",
+    "react": "^16.7.0"
+  }
+}
