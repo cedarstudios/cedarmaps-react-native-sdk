@@ -10,8 +10,8 @@
     "src"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/cedarstudios/cedarmaps-react-native-sdk.git"
+    "type": "git",
+    "url": "https://github.com/cedarstudios/cedarmaps-react-native-sdk.git"
   },
   "keywords": [
     "map",
