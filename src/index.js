@@ -13,9 +13,9 @@ const styleMapper = {
 }
 
 const backgroundColorMapper = {
-  LIGHT_STYLE_URL: '#f4f3f0',
-  DARK_STYLE_URL: '#213945',
-  LIGHT_RASTER_STYLE_URL: '#f4f3f0',
+  'style://streets-light': '#f4f3f0',
+  'style://streets-dark': '#213945',
+  'style://streets-light-raster': '#f4f3f0',
 }
 
 class CedarMaps extends Component<{}> {
@@ -49,7 +49,7 @@ class CedarMaps extends Component<{}> {
     if (!token) {
       return (<View style={{
         flex: 1,
-        backgroundColor: backgroundColorMapper[cedarMapStyle]
+        backgroundColor: backgroundColorMapper[mapStyle],
       }}/>)
     }
     const tileJsonUrl = `${cedarMapStyle}?access_token=${token}`
