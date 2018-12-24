@@ -40,7 +40,7 @@ class CedarMaps extends Component<{}> {
     getToken({
       clientSecret,
       clientId,
-      mapBaseUrl
+      mapBaseUrl: cleanUrl(mapBaseUrl)
     })
       .then(token => {
         this.setState({

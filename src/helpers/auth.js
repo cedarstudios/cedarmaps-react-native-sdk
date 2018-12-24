@@ -5,7 +5,7 @@ export const getToken = async ({ clientId, clientSecret, mapBaseUrl = CEDARMAPS_
   let formData = new FormData()
   formData.append('client_id', clientId)
   formData.append('client_secret', clientSecret)
-  const result = await fetch([mapBaseUrl, '/v1/token'],
+  const result = await fetch([mapBaseUrl, 'v1/token'].join('/'),
     {
       method: 'post',
       body: formData,
