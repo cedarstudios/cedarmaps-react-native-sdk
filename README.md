@@ -47,8 +47,8 @@ yarn add @cedarstudios/cedarmaps-react-native-sdk
 
 ## Platform Specific Installation Guides
 
-* [Android](android-install.md)
-* [iOS](ios-install.md)
+* [Android](https://github.com/cedarstudios/cedarmaps-react-native-sdk/blob/master/android-install.md)
+* [iOS](https://github.com/cedarstudios/cedarmaps-react-native-sdk/blob/master/ios-install.md)
 
 ## Initializing a Map
 
