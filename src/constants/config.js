@@ -1,1 +1,1 @@
-export const CEDAR_MAPS_API_URL = 'https://api.cedarmaps.com/v1'
+export const CEDARMAPS_BASE_URL = 'https://api.cedarmaps.com'

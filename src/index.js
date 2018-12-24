@@ -5,8 +5,8 @@ import {
   DARK_STYLE_URL,
   LIGHT_STYLE_URL,
   LIGHT_RASTER_STYLE_URL,
-  CEDARMAPS_BASE_URL,
 } from './constants/styles'
+import { CEDARMAPS_BASE_URL } from './constants/config'
 import { getToken } from './helpers/auth'
 import { View } from 'react-native'
 
@@ -34,12 +34,13 @@ class CedarMaps extends Component<{}> {
   }
 
   componentDidMount() {
-    const { clientId, clientSecret } = this.props
+    const { clientId, clientSecret, mapBaseUrl } = this.props
 
     if (!clientId || !clientSecret) throw Error('client_id or client_secret not provided')
     getToken({
       clientSecret,
       clientId,
+      mapBaseUrl
     })
       .then(token => {
         this.setState({
