@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import Mapbox from '@cedarstudios/react-native-mapbox-gl'
-import { DARK_STYLE_URL, LIGHT_STYLE_URL, LIGHT_RASTER_STYLE_URL } from './constants/styles'
+import { cleanUrl } from './helpers/utils'
+import {
+  DARK_STYLE_URL,
+  LIGHT_STYLE_URL,
+  LIGHT_RASTER_STYLE_URL,
+  CEDARMAPS_BASE_URL,
+} from './constants/styles'
 import { getToken } from './helpers/auth'
 import { View } from 'react-native'
 
@@ -43,9 +49,10 @@ class CedarMaps extends Component<{}> {
   }
 
   render() {
-    const { mapStyle } = this.props
+    const { mapStyle, mapBaseUrl = CEDARMAPS_BASE_URL } = this.props
+    const baseUrl = cleanUrl(mapBaseUrl)
     const { token } = this.state
-    const cedarMapStyle = styleMapper[mapStyle] || LIGHT_STYLE_URL
+    const cedarMapStyle = [baseUrl, styleMapper[mapStyle] || LIGHT_STYLE_URL].join('/')
     if (!token) {
       return (<View style={{
         flex: 1,
