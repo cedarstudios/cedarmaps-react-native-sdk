@@ -25,7 +25,7 @@ const backgroundColorMapper = {
 }
 
 class CedarMaps extends Component<{}> {
-
+ map;
   constructor(props) {
     super(props)
     this.state = {
@@ -64,6 +64,7 @@ class CedarMaps extends Component<{}> {
     return (
       <Mapbox.MapView
         {...this.props}
+        ref={(ref) => (this.map = ref)}
         styleURL={tileJsonUrl}
       >
       </Mapbox.MapView>
