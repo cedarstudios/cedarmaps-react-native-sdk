@@ -40,6 +40,11 @@ All the mentioned methods and tools in this document are tested on Android Studi
 npm install @cedarstudios/react-native-cedarmaps --save
 ```
 
+**also add this line to dependency section of your package.json file**
+```
+    "@cedarstudios/react-native-mapbox-gl": "git+https://github.com/cedarstudios/react-native-mapbox-gl.git",
+```
+
 ## Platform Specific Installation Guides
 
 * [Android](https://github.com/cedarstudios/cedarmaps-react-native-sdk/blob/master/android-install.md)
