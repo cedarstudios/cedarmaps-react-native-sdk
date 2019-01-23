@@ -106,7 +106,7 @@ For more information about how to use MapView and other components such as **Add
 ### Functions
 
 - getMapbox(): 
-  You can get main mapbox object via `getMapbox()` functions attached to CedarMaps
+  You can get main mapbox object (react-native-mapbox-gl) via `getMapbox()` functions attached to CedarMaps
 
 ### Components
 * [MapView](https://github.com/mapbox/react-native-mapbox-gl/blob/master/docs/MapView.md)
