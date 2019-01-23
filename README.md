@@ -103,6 +103,10 @@ Other possible values for ```mapStyle``` are:
 CedarMaps SDK is based on [Mapbox Maps SDK for React Native v6.1.3](https://github.com/mapbox/react-native-mapbox-gl) and provides extra API methods over Mapbox. 
 For more information about how to use MapView and other components such as **Adding Markers**, **Showing Current Location**, etc., please see [Mapbox for React Native First Steps](https://www.mapbox.com/help/first-steps-react-native-sdk/).
 
+### Functions
+
+- getMapbox(): 
+  You can get main mapbox object via `getMapbox()` functions attached to CedarMaps
 
 ### Components
 * [MapView](https://github.com/mapbox/react-native-mapbox-gl/blob/master/docs/MapView.md)

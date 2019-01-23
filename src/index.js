@@ -33,6 +33,10 @@ class CedarMaps extends Component<{}> {
     }
   }
 
+  getMapbox() {
+    return Mapbox
+  }
+
   componentDidMount() {
     const { clientId, clientSecret, mapBaseUrl } = this.props
 
@@ -40,7 +44,7 @@ class CedarMaps extends Component<{}> {
     getToken({
       clientSecret,
       clientId,
-      mapBaseUrl: cleanUrl(mapBaseUrl)
+      mapBaseUrl: cleanUrl(mapBaseUrl),
     })
       .then(token => {
         this.setState({
