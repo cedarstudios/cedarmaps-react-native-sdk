@@ -38,6 +38,14 @@ All the mentioned methods and tools in this document are tested on Android Studi
 **Npm**
 ```
 npm install @cedarstudios/react-native-cedarmaps --save
+<<<<<<< HEAD
+=======
+```
+
+**Yarn**
+```
+yarn add @cedarstudios/react-native-cedarmaps
+>>>>>>> c1838be763a84c570534480cea09c2e2be2fd01b
 ```
 
 ## Platform Specific Installation Guides
