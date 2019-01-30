@@ -45,6 +45,7 @@ npm install @cedarstudios/react-native-cedarmaps --save
 yarn add @cedarstudios/react-native-cedarmaps
 ```
 
+
 ## Platform Specific Installation Guides
 
 * [Android](https://github.com/cedarstudios/cedarmaps-react-native-sdk/blob/master/android-install.md)
