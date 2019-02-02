@@ -40,6 +40,12 @@ All the mentioned methods and tools in this document are tested on Android Studi
 npm install @cedarstudios/react-native-cedarmaps --save
 ```
 
+**Yarn**
+```
+yarn add @cedarstudios/react-native-cedarmaps
+```
+
+
 ## Platform Specific Installation Guides
 
 * [Android](https://github.com/cedarstudios/cedarmaps-react-native-sdk/blob/master/android-install.md)
@@ -105,6 +111,8 @@ For more information about how to use MapView and other components such as **Add
 
 ### Functions
 
+- getMap():
+  get the map ref object 
 - getMapbox(): 
   You can get main mapbox object (react-native-mapbox-gl) via `getMapbox()` functions attached to CedarMaps
 

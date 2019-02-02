@@ -26,11 +26,16 @@ const backgroundColorMapper = {
 
 class CedarMaps extends Component<{}> {
 
+  map;
   constructor(props) {
     super(props)
     this.state = {
       token: null,
     }
+  }
+
+  getMap(){
+    return this.map
   }
 
   getMapbox() {
@@ -67,6 +72,7 @@ class CedarMaps extends Component<{}> {
     const tileJsonUrl = `${cedarMapStyle}?access_token=${token}`
     return (
       <Mapbox.MapView
+        ref={(ref) => (this.map = ref)}
         {...this.props}
         styleURL={tileJsonUrl}
       >
