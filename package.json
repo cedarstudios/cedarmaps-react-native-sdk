@@ -1,6 +1,6 @@
 {
   "name": "@cedarstudios/react-native-cedarmaps",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A mapping service and highly detailed and spatially accurate GIS vector data application that covers the whole country of Iran.",
   "main": "./src/index.js",
   "scripts": {
