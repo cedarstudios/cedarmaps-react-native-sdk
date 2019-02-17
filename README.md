@@ -40,6 +40,13 @@ All the mentioned methods and tools in this document are tested on Android Studi
 npm install @cedarstudios/react-native-cedarmaps --save
 ```
 
+**Yarn**
+```
+yarn add @cedarstudios/react-native-cedarmaps
+```
+
+Please check your ```node_modules``` folder under ```@cedarstudios``` directory. There should be two submodules: ```react-native-cedarmaps``` and ```react-native-mapbox-gl```. If either of which is not present, try the above commands one more time. Sometimes, because of network issues, Mapbox binary wouldn't download completely.
+
 ## Platform Specific Installation Guides
 
 * [Android](https://github.com/cedarstudios/cedarmaps-react-native-sdk/blob/master/android-install.md)
@@ -53,7 +60,7 @@ First, you’ll import the components that you will need. This includes componen
 
 To display a map you’ll need CedarMaps credentials (```clientID``` and ```clientSecret```). CedarMaps uses an access token generated from these to associate requests to API resources with your account. 
 
-Use the CedarMaps.MapView component to initialize your map. The MapView component will add a map to the view, and you can add props to specify some parameters for the map including the map style, zoom level, and center of the map.
+Use the CedarMaps MapView component to initialize your map. The MapView component will add a map to the view, and you can add props to specify some parameters for the map including the map style, zoom level, and center of the map.
 
 Here’s the complete code to display a map:
 
@@ -105,6 +112,8 @@ For more information about how to use MapView and other components such as **Add
 
 ### Functions
 
+- getMap():
+  get the map ref object 
 - getMapbox(): 
   You can get main mapbox object (react-native-mapbox-gl) via `getMapbox()` functions attached to CedarMaps
 
