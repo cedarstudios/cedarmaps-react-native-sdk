@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import Mapbox from '@cedarstudios/react-native-mapbox-gl'
+import React, { Component } from 'react';
 import { cleanUrl } from './helpers/utils'
 import {
   DARK_STYLE_URL,
@@ -9,8 +8,9 @@ import {
 import { CEDARMAPS_BASE_URL } from './constants/config'
 import { getToken } from './helpers/auth'
 import { View } from 'react-native'
+import MapboxGL from '@react-native-mapbox-gl/maps';
 
-Mapbox.setAccessToken('pk.kdsevitantcaerspamradecsisiht')
+MapboxGL.setAccessToken('pk.kdsevitantcaerspamradecsisiht')
 
 const styleMapper = {
   'style://streets-light': LIGHT_STYLE_URL,
@@ -24,8 +24,8 @@ const backgroundColorMapper = {
   'style://streets-light-raster': '#f4f3f0',
 }
 
-class CedarMaps extends Component<{}> {
-
+class CSMapView extends Component {
+  
   map;
   constructor(props) {
     super(props)
@@ -33,52 +33,55 @@ class CedarMaps extends Component<{}> {
       token: null,
     }
   }
-
+  
   getMap(){
     return this.map
   }
-
+  
   getMapbox() {
-    return Mapbox
+    return MapboxGL
   }
-
+  
   componentDidMount() {
     const { clientId, clientSecret, mapBaseUrl } = this.props
-
+    
     if (!clientId || !clientSecret) throw Error('client_id or client_secret not provided')
     getToken({
       clientSecret,
       clientId,
       mapBaseUrl: cleanUrl(mapBaseUrl),
     })
-      .then(token => {
-        this.setState({
-          token,
-        })
+    .then(token => {
+      this.setState({
+        token,
       })
+    })
   }
-
+  
   render() {
     const { mapStyle, mapBaseUrl = CEDARMAPS_BASE_URL } = this.props
     const baseUrl = cleanUrl(mapBaseUrl)
     const { token } = this.state
     const cedarMapStyle = [baseUrl, styleMapper[mapStyle] || LIGHT_STYLE_URL].join('/')
+    
     if (!token) {
       return (<View style={{
         flex: 1,
         backgroundColor: backgroundColorMapper[mapStyle],
       }}/>)
     }
+    
     const tileJsonUrl = `${cedarMapStyle}?access_token=${token}`
     return (
-      <Mapbox.MapView
-        ref={(ref) => (this.map = ref)}
-        {...this.props}
-        styleURL={tileJsonUrl}
+      <MapboxGL.MapView
+      ref={ (ref) => (this.map = ref) }
+      { ...this.props }
+      styleURL = { tileJsonUrl }
       >
-      </Mapbox.MapView>
-    )
+      </MapboxGL.MapView>
+      )
+    }
   }
-}
-
-export default CedarMaps
+  
+  export default CSMapView;
+  
