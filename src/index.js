@@ -7,7 +7,7 @@ import {
 } from './constants/styles'
 import { CEDARMAPS_BASE_URL } from './constants/config'
 import { getToken } from './helpers/auth'
-import { View } from 'react-native'
+import { View, Image, SafeAreaView, Platform } from 'react-native'
 import MapboxGL from '@react-native-mapbox-gl/maps';
 
 MapboxGL.setAccessToken('pk.kdsevitantcaerspamradecsisiht')
@@ -24,7 +24,9 @@ const backgroundColorMapper = {
   'style://streets-light-raster': '#f4f3f0',
 }
 
-class CSMapView extends Component {
+const CedarMaps = {...MapboxGL}
+
+class Map extends Component {
   
   map;
   constructor(props) {
@@ -34,12 +36,8 @@ class CSMapView extends Component {
     }
   }
   
-  getMap(){
+  getMap() {
     return this.map
-  }
-  
-  getMapbox() {
-    return MapboxGL
   }
   
   componentDidMount() {
@@ -73,15 +71,27 @@ class CSMapView extends Component {
     
     const tileJsonUrl = `${cedarMapStyle}?access_token=${token}`
     return (
-      <MapboxGL.MapView
+      <>
+      <CedarMaps.MapView
       ref={ (ref) => (this.map = ref) }
       { ...this.props }
       styleURL = { tileJsonUrl }
-      >
-      </MapboxGL.MapView>
+      attributionEnabled = { false }
+      logoEnabled = { false }
+      />
+      {
+        Platform.OS == 'android' ? 
+        <Image source={require('./images/cedarmaps.png')} style={{marginHorizontal: 8, position:'absolute', bottom: 4, right: 0}}/>
+        :
+        <SafeAreaView style={{marginHorizontal: 8, position:'absolute', bottom: 0, right: 0}}>
+        <Image source={require('./images/cedarmaps.png')} />
+        </SafeAreaView>
+      }
+      </>
       )
-    }
   }
-  
-  export default CSMapView;
-  
+  }
+    
+CedarMaps.Map = Map;
+
+export default CedarMaps;
