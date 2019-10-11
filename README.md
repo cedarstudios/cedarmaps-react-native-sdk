@@ -21,11 +21,12 @@ All the mentioned methods and tools in this document are tested on Android Studi
 ## Table of Contents
 - [Installation](#installation)
 	-	[Platform Specific Guides](#platform-specific-installation-guides)
-- [MapView](#initializing-a-map)
+- [Getting Started](#getting-started)
 - [Documentation](#documentation)
   - [Components](#components)
   - [Sources](#sources)
   - [Layers](#layers)
+- [Examples](#examples)
 
 ## Installation
 
@@ -47,8 +48,8 @@ npm install @cedarstudios/react-native-cedarmaps --save
 
 ## Platform Specific Installation Guides
 
-* [Android](./android-install.md)
-* [iOS](./ios-install.md)
+* [Android](android-install.md)
+* [iOS](ios-install.md)
 
 ## Getting Started
 
@@ -146,3 +147,7 @@ CedarMaps Component is basically a wrapper component over MapboxGL with some add
 * [SymbolLayer](https://github.com/react-native-mapbox-gl/maps/blob/master/docs/SymbolLayer.md)
 * [HeatmapLayer](https://github.com/react-native-mapbox-gl/maps/blob/master/docs/HeatmapLayer.md)
 
+
+## Examples
+
+Mapbox has a plethora of examples for different use cases such as **Showing User Location**, **Adding Annotations**, etc. You can consult those [here](https://github.com/react-native-mapbox-gl/maps/tree/master/example/src/examples).
