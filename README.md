@@ -47,8 +47,8 @@ npm install @cedarstudios/react-native-cedarmaps --save
 
 ## Platform Specific Installation Guides
 
-* [Android](https://github.com/cedarstudios/cedarmaps-react-native-sdk/blob/master/android-install.md)
-* [iOS](https://github.com/cedarstudios/cedarmaps-react-native-sdk/blob/master/ios-install.md)
+* [Android](./android-install.md)
+* [iOS](./ios-install.md)
 
 ## Getting Started
 
@@ -119,8 +119,7 @@ CedarMaps Component is basically a wrapper component over MapboxGL with some add
 
 ### Functions
 
-- getMap():  
-Getting the map ref object. 
+- `getMap()`: Getting the map ref object. 
 
 ### Components
 * [MapView](https://github.com/react-native-mapbox-gl/maps/blob/master/docs/MapView.md)
