@@ -43,6 +43,8 @@ class Map extends Component {
   componentDidMount() {
     const { clientId, clientSecret, mapBaseUrl } = this.props
     
+    MapboxGL.setTelemetryEnabled(false)
+    
     if (!clientId || !clientSecret) throw Error('client_id or client_secret not provided')
     getToken({
       clientSecret,
