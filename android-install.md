@@ -1,66 +1,82 @@
 # Android Installation
+    
+## 1. `android/build.gradle`
+We need to add an additional repository in order to get our dependencies.
 
-## Gradle Setup
-
-### project:build.gradle
-
-We need to add some `repositories` in order to get our dependencies.
-
-* `jcenter()`
 * `https://jitpack.io`
-* `http://maven.google.com`
 
-```
+```diff
 allprojects {
     repositories {
+        mavenLocal()
+        google()
         jcenter()
-        maven { url "$rootDir/../node_modules/react-native/android" }
-        maven { url "https://jitpack.io" }
-        maven { url "https://maven.google.com" }
-        maven { url "https://repo.cedarmaps.com/android/" }
-    }
-}
-```
-
-### app:build.gradle
-
-Add Mapbox Native Maps SDK project under `dependencies`. Due to an issue on Mapbox side, make sure to force this dependency to use ```okhttp v3.6.0```.
-
-```
-dependencies {
-    implementation project(':react-native-mapbox-gl') {
-        implementation ('com.squareup.okhttp3:okhttp:3.6.0') {
-            force = true
++       maven { url "https://jitpack.io" }
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url "$rootDir/../node_modules/react-native/android"
         }
     }
 }
 ```
 
-Update Android SDK version if you did `react-native init`, we want to be on `26` or higher.
-* `compileSdkVersion 26`
-* `buildToolsVersion "26.0.3"`
-* `targetSdkVersion 26`
+Make sure that your `buildscript > ext` settings are correct.
+We want to be on `28` or higher:
 
-### settings.gradle
+```
+buildscript {
+    ext {
+        buildToolsVersion = "28.0.3"
+        compileSdkVersion = 28
+        targetSdkVersion = 28
+    }
+}
+```
+
+---
+
+
+## 2. `android/app/build.gradle`
+
+Add project under `dependencies`
+
+```diff
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.facebook.react:react-native:+"  // From node_modules
++   implementation project(':@react-native-mapbox-gl_maps')
+}
+```
+
+You can set the Support Library version or the okhttp version if you use other modules that depend on them:
+* `supportLibVersion "28.0.0"`
+* `okhttpVersion "3.12.1"`
+
+
+## 3. `android/settings.gradle`
 
 Include project, so gradle knows where to find the project
 
-```
-include ':react-native-mapbox-gl'
-project(':react-native-mapbox-gl').projectDir = new File(rootProject.projectDir, '../node_modules/@cedarstudios/react-native-mapbox-gl/android/rctmgl')
+```diff
+rootProject.name = <YOUR_PROJECT_NAME>
+
++include ':@react-native-mapbox-gl_maps'
++project(':@react-native-mapbox-gl_maps').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-mapbox-gl/maps/android/rctmgl')
+
+include ':app'¬
 ```
 
-### MainApplication.java
+## 4. `android/app/src/main/java/com/PROJECT_NAME/MainApplication.java`
 
 We need to register our package
 
-Add `import com.mapbox.rctmgl.RCTMGLPackage;` as an import statement and
-`new RCTMGLPackage()` in `getPackages()`
+Add `import com.mapbox.rctmgl.RCTMGLPackage;`  
+as an import statement and  
+`new RCTMGLPackage()` within the `getPackages()` method
 
-Here is an example
-
-```java
-package com.rngltest;
+```diff
+package <YOUR_PROJECT_NAME>;
 
 import android.app.Application;
 
@@ -69,7 +85,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.mapbox.rctmgl.RCTMGLPackage;
++import com.mapbox.rctmgl.RCTMGLPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -86,8 +102,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new RCTMGLPackage()
++         new RCTMGLPackage()
       );
+    }
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
     }
   };
 
@@ -102,4 +123,5 @@ public class MainApplication extends Application implements ReactApplication {
     SoLoader.init(this, /* native exopackage */ false);
   }
 }
+
 ```
