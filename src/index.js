@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import Mapbox from '@cedarstudios/react-native-mapbox-gl'
+import React, { Component } from 'react';
 import { cleanUrl } from './helpers/utils'
 import {
   DARK_STYLE_URL,
@@ -8,9 +7,10 @@ import {
 } from './constants/styles'
 import { CEDARMAPS_BASE_URL } from './constants/config'
 import { getToken } from './helpers/auth'
-import { View } from 'react-native'
+import { View, Image, SafeAreaView, Platform } from 'react-native'
+import MapboxGL from '@react-native-mapbox-gl/maps';
 
-Mapbox.setAccessToken('pk.kdsevitantcaerspamradecsisiht')
+MapboxGL.setAccessToken('pk.kdsevitantcaerspamradecsisiht')
 
 const styleMapper = {
   'style://streets-light': LIGHT_STYLE_URL,
@@ -24,8 +24,10 @@ const backgroundColorMapper = {
   'style://streets-light-raster': '#f4f3f0',
 }
 
-class CedarMaps extends Component<{}> {
+const CedarMaps = {...MapboxGL}
 
+class Map extends Component {
+  
   map;
   constructor(props) {
     super(props)
@@ -33,52 +35,65 @@ class CedarMaps extends Component<{}> {
       token: null,
     }
   }
-
-  getMap(){
+  
+  getMap() {
     return this.map
   }
-
-  getMapbox() {
-    return Mapbox
-  }
-
+  
   componentDidMount() {
     const { clientId, clientSecret, mapBaseUrl } = this.props
-
+    
+    MapboxGL.setTelemetryEnabled(false)
+    
     if (!clientId || !clientSecret) throw Error('client_id or client_secret not provided')
     getToken({
       clientSecret,
       clientId,
       mapBaseUrl: cleanUrl(mapBaseUrl),
     })
-      .then(token => {
-        this.setState({
-          token,
-        })
+    .then(token => {
+      this.setState({
+        token,
       })
+    })
   }
-
+  
   render() {
     const { mapStyle, mapBaseUrl = CEDARMAPS_BASE_URL } = this.props
     const baseUrl = cleanUrl(mapBaseUrl)
     const { token } = this.state
     const cedarMapStyle = [baseUrl, styleMapper[mapStyle] || LIGHT_STYLE_URL].join('/')
+    
     if (!token) {
       return (<View style={{
         flex: 1,
         backgroundColor: backgroundColorMapper[mapStyle],
       }}/>)
     }
+    
     const tileJsonUrl = `${cedarMapStyle}?access_token=${token}`
     return (
-      <Mapbox.MapView
-        ref={(ref) => (this.map = ref)}
-        {...this.props}
-        styleURL={tileJsonUrl}
-      >
-      </Mapbox.MapView>
-    )
+      <>
+      <CedarMaps.MapView
+      ref={ (ref) => (this.map = ref) }
+      { ...this.props }
+      styleURL = { tileJsonUrl }
+      attributionEnabled = { false }
+      logoEnabled = { false }
+      />
+      {
+        Platform.OS == 'android' ? 
+        <Image source={require('./images/cedarmaps.png')} style={{marginHorizontal: 8, position:'absolute', bottom: 4, right: 0}}/>
+        :
+        <SafeAreaView style={{marginHorizontal: 8, position:'absolute', bottom: 0, right: 0}}>
+        <Image source={require('./images/cedarmaps.png')} />
+        </SafeAreaView>
+      }
+      </>
+      )
   }
-}
+  }
+    
+CedarMaps.Map = Map;
 
-export default CedarMaps
+export default CedarMaps;
