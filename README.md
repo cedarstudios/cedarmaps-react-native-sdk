@@ -2,7 +2,9 @@
   <img src="http://api.cedarmaps.com/docs/img/cedarmaps-api.png" width="500"/>
 </a>
 
-# CedarMasp SDK for React Native
+# DEPRECATED: CedarMasp SDK for React Native
+
+This SDK is no longer supported and won't be updated anymore.
 
 ## What is CedarMaps?
 
